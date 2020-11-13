@@ -9,5 +9,6 @@
         <module name="Abgabe1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="14" />
   </component>
 </project>
