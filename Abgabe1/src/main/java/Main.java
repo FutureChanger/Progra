@@ -16,14 +16,14 @@ public class Main {
         if (ziel.equals("Ziel")) {
             double zielBetrag = SimpleIO.getDouble("Was ist ihr Zielbetrag?");
             while (startBetrag < zielBetrag) {
-                startBetrag = startBetrag * (1 + (zinsSatz/100));
+                startBetrag = startBetrag * (1 + (zinsSatz / 100));
                 counterFürZinsen++;
             }
             SimpleIO.output("Es dauert " + counterFürZinsen + " Jahre. Danach haben sie: " + startBetrag + " Euro.");
         } else {
             int dauerVonJahren = SimpleIO.getInt("Wie viele Jahre wollen Sie sparen?");
             for (int i = 0; i < dauerVonJahren; i++) {
-                startBetrag = startBetrag * (1 + (zinsSatz/100));
+                startBetrag = startBetrag * (1 + (zinsSatz / 100));
             }
             SimpleIO.output("Bei einem Zinssatz von: " + zinsSatz + "% und einem Startbetrag von " + startBetrag + " hat man nach " + dauerVonJahren + " Jahren " + startBetrag + " Euro gespart.");
         }
