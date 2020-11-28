@@ -6,7 +6,7 @@ public class Karte {
     Wert wert;
 
     public String toString() {
-        return farbe.toString() + wert.toString();
+        return this.farbe.toString() + this.wert.toString();
     }
 
     static Karte neueKarte(Farbe f, Wert w) {
