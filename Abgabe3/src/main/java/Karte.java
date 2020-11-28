@@ -20,4 +20,27 @@ public class Karte {
         neu2.wert = Wert.valueOf(w);
         return neu2;
     }
+
+    static int kombinationen() {
+        int a = Wert.values().length;
+        int b = Farbe.values().length;
+        return a * b;
+    }
+
+    boolean bedient(Karte other) {
+        if (this.wert.toString().contentEquals("BUBE")) {
+            return true;
+        } else if (this.farbe.toString().contentEquals(other.farbe.toString())) {
+            return true;
+        } else return this.wert.toString().contentEquals(other.wert.toString());
+    }
+
+    boolean bedienbar(Karte... karten) {
+        for (Karte x : karten) {
+            if(this.bedient(x)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
