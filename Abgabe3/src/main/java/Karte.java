@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Karte {
 
     Farbe farbe;
@@ -27,6 +29,21 @@ public class Karte {
         return a * b;
     }
 
+    static Karte[] skatblatt() {
+        int arrayLength = kombinationen();
+        Karte[] deck = new Karte[arrayLength];
+        int x = 0;
+        Farbe[] f = Farbe.values();
+        Wert[] w = Wert.values();
+        for (int i = 0; i < Farbe.values().length; i++) {
+            for (int t = 0; t < Wert.values().length; t++) {
+                deck[x] = Karte.neueKarte(f[i], w[t]);
+                x++;
+            }
+        }
+        return deck;
+    }
+
     boolean bedient(Karte other) {
         if (this.wert.toString().contentEquals("BUBE")) {
             return true;
@@ -37,10 +54,23 @@ public class Karte {
 
     boolean bedienbar(Karte... karten) {
         for (Karte x : karten) {
-            if(this.bedient(x)) {
+            if (this.bedient(x)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static void druckeEinbahnBedienungen() {
+        Karte[] deckToIterate = skatblatt();
+        for (int i = 0; i < deckToIterate.length - 1; i++) {
+            for (int k = 0; k < deckToIterate.length - 1; k++) {
+                if (deckToIterate[i] != deckToIterate[k]) {
+                    if (deckToIterate[i].bedient(deckToIterate[k]) && !(deckToIterate[k].bedient(deckToIterate[i]))) {
+                        System.out.println(deckToIterate[i] + " bedient " + deckToIterate[k] + " aber " + deckToIterate[k] + " nicht " + deckToIterate[i]);
+                    }
+                }
+            }
+        }
     }
 }
