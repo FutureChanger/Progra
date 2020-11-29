@@ -54,7 +54,7 @@ public class Karte {
 
     boolean bedienbar(Karte... karten) {
         for (Karte x : karten) {
-            if (this.bedient(x)) {
+            if (x.bedient(this)) {
                 return true;
             }
         }

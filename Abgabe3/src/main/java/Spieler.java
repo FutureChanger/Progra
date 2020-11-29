@@ -14,11 +14,51 @@ public class Spieler {
         Spieler t = club[0];
         for (Spieler x : club) {
             if (x.prozentualeSiegesquote > tempQuote) {
-                t=x;
+                t = x;
                 return t;
             }
         }
         return t;
+    }
+
+    void kannBedienen(Karte k) {
+        Karte[] deck = this.kartenhand;
+        String check = k.bedienbar(deck) ? this.spielerName + " kann bedienen!" : this.spielerName + " kann nicht bedienen!";
+        System.out.println(check);
+    }
+
+    public static void main(String[] args) {
+        Spieler elisabeth = new Spieler();
+        Spieler klaus = new Spieler();
+        Spieler helmut = new Spieler();
+        Spieler erwin = new Spieler();
+
+        elisabeth.spielerName = "Elisabeth";
+        elisabeth.prozentualeSiegesquote = 37.5;
+
+        klaus.spielerName = "Klaus";
+        klaus.prozentualeSiegesquote = 12.5;
+
+        helmut.spielerName = "Helmut";
+        helmut.prozentualeSiegesquote = 38.75;
+
+        erwin.spielerName = "Erwin";
+        erwin.prozentualeSiegesquote = 11.25;
+
+        Spieler best = Spieler.besterSpieler(helmut, elisabeth, klaus, erwin);
+        System.out.println(best);
+
+        Karte[] dreiElemente = {Karte.neueKarte(Farbe.HERZ, Wert.SIEBEN), Karte.neueKarte(Farbe.HERZ, Wert.NEUN), Karte.neueKarte(Farbe.HERZ, Wert.KOENIG)};
+
+        best.kartenhand = dreiElemente;
+
+        best.kannBedienen(Karte.neueKarte(Farbe.KARO, Wert.BUBE));
+        /*Karte x = Karte.neueKarte(Farbe.HERZ,Wert.KOENIG);
+        Karte y = Karte.neueKarte(Farbe.PIK,Wert.BUBE);
+        Karte z = Karte.neueKarte(Farbe.PIK,Wert.KOENIG);
+
+        System.out.println(y.bedienbar(x,z));
+        System.out.println(x.bedienbar(y,z));*/
     }
 
 }
