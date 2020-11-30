@@ -46,19 +46,12 @@ public class Spieler {
         erwin.prozentualeSiegesquote = 11.25;
 
         Spieler best = Spieler.besterSpieler(helmut, elisabeth, klaus, erwin);
-        System.out.println(best);
 
-        Karte[] dreiElemente = {Karte.neueKarte(Farbe.HERZ, Wert.SIEBEN), Karte.neueKarte(Farbe.HERZ, Wert.NEUN), Karte.neueKarte(Farbe.HERZ, Wert.KOENIG)};
+        Karte[] dreiElemente = {Karte.neueKarte(Farbe.HERZ, Wert.SIEBEN), Karte.neueKarte(Farbe.HERZ, Wert.NEUN), Karte.neueKarte(Farbe.KARO, Wert.KOENIG)};
 
         best.kartenhand = dreiElemente;
 
         best.kannBedienen(Karte.neueKarte(Farbe.KARO, Wert.BUBE));
-        /*Karte x = Karte.neueKarte(Farbe.HERZ,Wert.KOENIG);
-        Karte y = Karte.neueKarte(Farbe.PIK,Wert.BUBE);
-        Karte z = Karte.neueKarte(Farbe.PIK,Wert.KOENIG);
-
-        System.out.println(y.bedienbar(x,z));
-        System.out.println(x.bedienbar(y,z));*/
     }
 
 }
