@@ -43,8 +43,8 @@ public class Gosper {
     }
 
     public static void main(String[] args) {
-        int ordnung = 3;
-        int length = 10;
+        int ordnung = 1;
+        int length = 50;
         boolean links = true;
         if (args.length == 3) {
             if (args[2].equals("r")) {
