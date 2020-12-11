@@ -7,7 +7,9 @@ public class Main {
         double zinsSatz = SimpleIO.getDouble("Bitte gebe den Zinssatz ein.");
         int counterFuerZinsen = 0;
 
-        String ziel = SimpleIO.getString("Bitte gebe ein ob du das Ziel oder die Zeit berechnen möchtest.");
+        String ziel = SimpleIO.getString("Bitte wählen Sie aus :\n" +
+                "Ziel : Berechnet die Zeit, bis ein gegebener Betrag angespart wurde .\n" +
+                "Zeit : Berechnet den Betrag, der nach einer gegebenen Zeit angespart wurde ..");
 
         while (!ziel.equals("Ziel") && !ziel.equals("Zeit")) {
             SimpleIO.output("Bitte 'Ziel' oder 'Zeit' eingeben.");
