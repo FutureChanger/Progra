@@ -128,8 +128,7 @@ public class TreeNode {
             } else if (x > this.value && this.hasRight()) {
                 next = this.getRight();
                 next.insert(x);
-            }
-            if (x > this.value && !this.hasRight()) {
+            } else if (x > this.value && !this.hasRight()) {
                 this.right = new TreeNode(x);
             } else if (x < this.value && !this.hasLeft()) {
                 this.left = new TreeNode(x);
@@ -137,56 +136,81 @@ public class TreeNode {
         } else {
 
         }
-
-        /**
-         * Sucht in diesem Teilbaum nach x und rotiert den Endpunkt der Suche in die
-         * Wurzel.
-         *
-         * @param x der gesuchte Wert
-         * @return die neue Wurzel des Teilbaums
-         */
-        public TreeNode rotationSearch ( int x){
-            //TODO
-
-        }
-
-        /**
-         * @return Geordnete Liste aller Zahlen, die in diesem Teilbaum gespeichert sind.
-         */
-        public String toString () {
-            //TODO
-
-        }
-
-        /**
-         * Erzeugt eine dot Repraesentation in str
-         *
-         * @param str       Stringbuilder Objekt zur Konstruktion der Ausgabe
-         * @param nullNodes Hilfsvariable, um Nullknoten zu indizieren. Anfangswert sollte 0 sein.
-         * @return Den nullNodes Wert fuer den behandelten Baum
-         */
-        public int toDot (StringBuilder str,int nullNodes){
-            if (this.hasLeft()) {
-                str.append(this.getValueString() + " -> " + this.left.getValueString() + ";"
-                        + System.lineSeparator());
-                nullNodes = this.left.toDot(str, nullNodes);
-            } else {
-                str.append("null" + nullNodes + "[shape=point]" + System.lineSeparator()
-                        + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
-                nullNodes += 1;
-            }
-            if (this.hasRight()) {
-                str.append(this.getValueString() + " -> " + this.right.getValueString() + ";"
-                        + System.lineSeparator());
-                nullNodes = this.right.toDot(str, nullNodes);
-            } else {
-                str.append("null" + nullNodes + "[shape=point]" + System.lineSeparator()
-                        + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
-                nullNodes += 1;
-            }
-            return nullNodes;
-        }
-
     }
 
+    /**
+     * Sucht in diesem Teilbaum nach x und rotiert den Endpunkt der Suche in die
+     * Wurzel.
+     *
+     * @param x der gesuchte Wert
+     * @return die neue Wurzel des Teilbaums
+     */
+    public TreeNode rotationSearch(int x) {
+        TreeNode save;
+        if (x < this.value) {
+            if (this.left == null) {
+                return this;
+            }
+            save = this.left.rotationSearch(x);
+            this.left = save.right;
+            save.right = this;
+            return save;
+        }
+        if (x > this.value) {
+            if (this.right == null) {
+                return this;
+            }
+            save = this.right.rotationSearch(x);
+            this.right = save.left;
+            save.left = this;
+            return save;
+        }
+        return this;
+    }
 
+    /**
+     * @return Geordnete Liste aller Zahlen, die in diesem Teilbaum gespeichert sind.
+     */
+    public String toString() {
+
+        StringBuilder builder = new StringBuilder();
+        if (this.left != null) {
+            builder.append(this.left.toString());
+        }
+        builder.append(this.getValue());
+        builder.append(", ");
+        if (this.right != null) {
+            builder.append(this.right.toString());
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Erzeugt eine dot Repraesentation in str
+     *
+     * @param str       Stringbuilder Objekt zur Konstruktion der Ausgabe
+     * @param nullNodes Hilfsvariable, um Nullknoten zu indizieren. Anfangswert sollte 0 sein.
+     * @return Den nullNodes Wert fuer den behandelten Baum
+     */
+    public int toDot(StringBuilder str, int nullNodes) {
+        if (this.hasLeft()) {
+            str.append(this.getValueString() + " -> " + this.left.getValueString() + ";"
+                    + System.lineSeparator());
+            nullNodes = this.left.toDot(str, nullNodes);
+        } else {
+            str.append("null" + nullNodes + "[shape=point]" + System.lineSeparator()
+                    + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
+            nullNodes += 1;
+        }
+        if (this.hasRight()) {
+            str.append(this.getValueString() + " -> " + this.right.getValueString() + ";"
+                    + System.lineSeparator());
+            nullNodes = this.right.toDot(str, nullNodes);
+        } else {
+            str.append("null" + nullNodes + "[shape=point]" + System.lineSeparator()
+                    + this.getValueString() + " -> null" + nullNodes + ";" + System.lineSeparator());
+            nullNodes += 1;
+        }
+        return nullNodes;
+    }
+}

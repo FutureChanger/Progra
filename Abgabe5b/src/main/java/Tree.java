@@ -49,12 +49,10 @@ public class Tree {
      * @param x einzufuegende Zahl
      */
     public void insert(int x) {
-        TreeNode next;
         if (isEmpty()) {
-            root = new TreeNode(x);
-        } else {
-            next = this.root;
-            next.insert(x);
+            this.root = new TreeNode(x);
+        } else if (!simpleSearch(x)) {
+            this.root.insert(x);
         }
     }
 
@@ -80,14 +78,21 @@ public class Tree {
      * @return true, falls x im Baum enthalten ist, sonst false
      */
     public boolean search(int x) {
-
+        root = this.root.rotationSearch(x);
+        return this.simpleSearch(x);
     }
 
     /**
      * @return Sortierte Ausgabe aller Elemente.
      */
     public String toString() {
-        //TODO
+        StringBuilder str = new StringBuilder("");
+        str.append("[");
+        str.append(this.root.toString());
+        str.deleteCharAt(str.length() - 2);
+        str.deleteCharAt(str.length() - 1);
+        str.append("]");
+        return str.toString();
     }
 
     /**
@@ -112,7 +117,7 @@ public class Tree {
      *
      * @param path Pfad unter dem gespeichert werden soll (Dateiname)
      * @return true, falls erfolgreich gespeichert wurde, sonst false
-     * @see toDot
+     * @see
      */
     public boolean writeToFile(String path) {
         boolean retval = true;
