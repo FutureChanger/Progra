@@ -40,6 +40,34 @@ public class Gerade {
         return "Gerade durch " + p1.toString() + " und " + p2.toString();
     }
 
+    boolean zwischenp1p2(Punkt p0) {
+        return p1.abstand(p0).add(p0.abstand(p2)).equals(p1.abstand(p2));
+    }
+
+    boolean vorp1(Punkt p0) {
+        return p0.abstand(p1).add(p1.abstand(p2)).equals(p0.abstand(p2)) && p0.abstand(p1).compareTo(p0.abstand(p2)) < 0;
+    }
+
+    boolean hinterp1(Punkt p0) {
+        return p1.abstand(p2).add(p2.abstand(p0)).equals(p1.abstand(p0)) && p2.abstand(p0).compareTo(p1.abstand(p2)) < 0;
+    }
+
+    public boolean enthaelt(Punkt p0) {
+        if (zwischenp1p2(p0)) {
+            return true;
+        } else if (vorp1(p0)) {
+            return true;
+        } else return hinterp1(p0);
+    }
+
+    public boolean equals(Object obj) {
+        if (obj.getClass().equals(this.getClass())) { //getClass -> instance of unterschied?
+            return this.enthaelt(((Gerade) obj).p1) && this.enthaelt(((Gerade) obj).p2);
+        } else {
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         Punkt x = new Punkt(1, 2);
         Punkt y = new Punkt(1, 3);
