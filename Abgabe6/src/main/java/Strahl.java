@@ -10,11 +10,11 @@ public class Strahl extends Gerade {
     }
 
     boolean startsFromp1() {
-        return startPunkt.equals(p1);
+        return startPunkt.equals(getP1());
     }
 
     boolean startsFromp2() {
-        return zweiterPunkt.equals(p2);
+        return zweiterPunkt.equals(getP2());
     }
 
     @Override
@@ -28,9 +28,13 @@ public class Strahl extends Gerade {
 
     @Override
     public boolean enthaelt(Punkt p0) {
-        if (zwischenp1p2(p0)) {
-            return true;
-        } else return hinterp2(p0);
+        if (startsFromp1()) {
+            return zwischenp1p2(p0) || hinterp2(p0);
+        } else if (startsFromp2()) {
+            return zwischenp1p2(p0) || vorp1(p0);
+        } else {
+            return false;
+        }
     }
 
     @Override
