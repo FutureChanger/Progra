@@ -5,16 +5,16 @@ public class Strahl extends Gerade {
 
     public Strahl(Punkt x, Punkt y) {
         super(x, y);
-        this.startPunkt = p1;
-        this.zweiterPunkt = p2;
+        this.startPunkt = x;
+        this.zweiterPunkt = y;
     }
 
-    boolean startsFromp1(Punkt x) {
-        return x.equals(p1);
+    boolean startsFromp1() {
+        return startPunkt.equals(p1);
     }
 
-    boolean startsFromp2(Punkt y) {
-        return y.equals(p1);
+    boolean startsFromp2() {
+        return zweiterPunkt.equals(p2);
     }
 
     @Override
