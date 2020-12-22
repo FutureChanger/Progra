@@ -21,5 +21,25 @@ public class Strahl extends Gerade {
     public String toString() {
         return "Der Strahl startet im Punkt: " + startPunkt.toString() + " und geht durch den Punkt: " + zweiterPunkt.toString();
     }
+
+    Gerade verlaengern() {
+        return new Gerade(startPunkt, zweiterPunkt);
+    }
+
+    @Override
+    public boolean enthaelt(Punkt p0) {
+        if (zwischenp1p2(p0)) {
+            return true;
+        } else return hinterp2(p0);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass().equals(this.getClass())) {
+            return this.enthaelt(((Strahl) obj).startPunkt) && this.enthaelt(((Strahl) obj).zweiterPunkt);
+        } else {
+            return false;
+        }
+    }
 }
 

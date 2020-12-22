@@ -48,8 +48,8 @@ public class Gerade {
         return p0.abstand(p1).add(p1.abstand(p2)).equals(p0.abstand(p2)) && p0.abstand(p1).compareTo(p0.abstand(p2)) < 0;
     }
 
-    boolean hinterp1(Punkt p0) {
-        return p1.abstand(p2).add(p2.abstand(p0)).equals(p1.abstand(p0)) && p2.abstand(p0).compareTo(p1.abstand(p2)) < 0;
+    boolean hinterp2(Punkt p0) {
+        return p1.abstand(p2).add(p2.abstand(p0)).equals(p1.abstand(p0)) && p2.abstand(p0).compareTo(p1.abstand(p0)) < 0;
     }
 
     public boolean enthaelt(Punkt p0) {
@@ -57,7 +57,9 @@ public class Gerade {
             return true;
         } else if (vorp1(p0)) {
             return true;
-        } else return hinterp1(p0);
+        } else {
+            return hinterp2(p0);
+        }
     }
 
     public boolean equals(Object obj) {
