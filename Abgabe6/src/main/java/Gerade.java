@@ -2,8 +2,8 @@ import java.math.*;
 
 public class Gerade {
 
-    final Punkt p1;
-    final Punkt p2;
+    private final Punkt p1;
+    private final Punkt p2;
 
     public Punkt getP1() {
         return p1;
@@ -18,11 +18,11 @@ public class Gerade {
             this.p1 = null;
             this.p2 = null;
         } else {
-            if (p1.xKoordinate.compareTo(p2.xKoordinate) < 0) {
+            if (p1.getxKoordinate().compareTo(p2.getxKoordinate()) < 0) {
                 this.p1 = p1;
                 this.p2 = p2;
-            } else if (p1.xKoordinate.compareTo(p2.xKoordinate) == 0) {
-                if (p1.yKoordinate.compareTo(p2.yKoordinate) < 0) {
+            } else if (p1.getxKoordinate().compareTo(p2.getxKoordinate()) == 0) {
+                if (p1.getyKoordinate().compareTo(p2.getyKoordinate()) < 0) {
                     this.p1 = p1;
                     this.p2 = p2;
                 } else {
@@ -36,6 +36,7 @@ public class Gerade {
         }
     }
 
+    @Override
     public String toString() {
         return "Gerade durch " + p1.toString() + " und " + p2.toString();
     }
@@ -62,19 +63,12 @@ public class Gerade {
         }
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (obj.getClass().equals(this.getClass())) { //getClass -> instance of unterschied?
             return this.enthaelt(((Gerade) obj).p1) && this.enthaelt(((Gerade) obj).p2);
         } else {
             return false;
         }
-    }
-
-    public static void main(String[] args) {
-        Punkt x = new Punkt(1, 2);
-        Punkt y = new Punkt(1, 3);
-        Gerade z = new Gerade(x, y);
-        String k = z.toString();
-        System.out.println(k);
     }
 }

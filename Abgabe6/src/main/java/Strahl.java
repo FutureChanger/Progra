@@ -1,7 +1,7 @@
 public class Strahl extends Gerade {
 
-    final Punkt startPunkt;
-    final Punkt zweiterPunkt;
+    private final Punkt startPunkt;
+    private final Punkt zweiterPunkt;
 
     public Strahl(Punkt x, Punkt y) {
         super(x, y);

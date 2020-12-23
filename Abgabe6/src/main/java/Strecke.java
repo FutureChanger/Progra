@@ -13,7 +13,7 @@ public class Strecke extends Strahl {
     @Override
     public boolean equals(Object obj) {
         if (obj.getClass().equals(this.getClass())) {
-            return this.enthaelt(((Strecke) obj).p1) && this.enthaelt(((Strecke) obj).p2);
+            return this.enthaelt(((Strecke) obj).getP1()) && this.enthaelt(((Strecke) obj).getP2());
         } else {
             return false;
         }
@@ -21,9 +21,9 @@ public class Strecke extends Strahl {
 
     Strahl verlaengern(boolean swap) {
         if (swap) {
-            return new Strahl(this.startPunkt, this.zweiterPunkt);
+            return new Strahl(this.getP1(), this.getP2());
         } else {
-            return new Strahl(this.zweiterPunkt, this.startPunkt);
+            return new Strahl(this.getP2(), this.getP1());
         }
     }
 }
