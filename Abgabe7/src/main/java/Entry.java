@@ -4,7 +4,6 @@ public class Entry<K, V> {
     private V value; //Werte
 
     public Entry(K key, V value) {
-        //initialize here
         this.key = key;
         this.value = value;
     }
